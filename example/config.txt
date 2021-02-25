@@ -1,0 +1,2 @@
+Prefix plugins/MergePairedEnd/example
+Plugin MergePairedEnd inputfile parameters.txt outputfile merger1
