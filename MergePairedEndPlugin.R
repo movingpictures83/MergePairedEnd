@@ -32,7 +32,10 @@ run <- function() {
 output <- function(outputfile) {
 i=1
 for (fn in names(merger1)) {
-   uniquesToFasta(merger1[[i]], paste(outputfile, fn, sep="."))
+   print(fn)
+   if (nrow(merger1[[i]]) != 0) {
+      uniquesToFasta(merger1[[i]], paste(outputfile, fn, sep="."))
+   }
    i <- i+1
 }
    saveRDS(merger1, paste(outputfile, "rds", sep="."))
