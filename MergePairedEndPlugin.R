@@ -18,7 +18,14 @@ input <- function(inputfile) {
   rownames(parameters) <- parameters[,1]
   fastqpfx <<- paste(pfix, toString(parameters["FASTQ", 2]), sep="")
   dadapfx <<- paste(pfix, toString(parameters["DADA", 2]), sep="")
+  minOverlap <<- 20
+  maxMismatch <<- 0
+  if ("minoverlap" %in% parameters) {
   minOverlap <<- as.integer(toString(parameters["minoverlap", 2]))
+  }
+  if ("maxmismatch" %in% parameters) {
+  maxMismatch <<- as.integer(toString(parameters["maxmismatch", 2]))
+  }
 }
 
 run <- function() {
@@ -26,7 +33,7 @@ run <- function() {
 	derep_reverse <<- readRDS(paste(fastqpfx, "reverse", "rds", sep="."))
 	dadaFs <<- readRDS(paste(dadapfx, "forward", "rds", sep="."))
 	dadaRs <<- readRDS(paste(dadapfx, "reverse", "rds", sep="."))
-	merger1 <<- mergePairs(dadaFs, derep_forward, dadaRs, derep_reverse, minOverlap=minOverlap, verbose=TRUE)
+	merger1 <<- mergePairs(dadaFs, derep_forward, dadaRs, derep_reverse, minOverlap=minOverlap, maxMismatch=maxMismatch, verbose=TRUE)
 }
 
 output <- function(outputfile) {
