@@ -20,11 +20,11 @@ input <- function(inputfile) {
   dadapfx <<- paste(pfix, toString(parameters["DADA", 2]), sep="")
   minOverlap <<- 20
   maxMismatch <<- 0
-  if ("minoverlap" %in% parameters) {
-  minOverlap <<- as.integer(toString(parameters["minoverlap", 2]))
+  if ("minOverlap" %in% rownames(parameters)) {
+  minOverlap <<- as.integer(toString(parameters["minOverlap", 2]))
   }
-  if ("maxmismatch" %in% parameters) {
-  maxMismatch <<- as.integer(toString(parameters["maxmismatch", 2]))
+  if ("maxMismatch" %in% rownames(parameters)) {
+  maxMismatch <<- as.integer(toString(parameters["maxMismatch", 2]))
   }
 }
 
